@@ -130,4 +130,6 @@ async function calculateSteps() {
   }
 }
 
+
+// run program
 main()
