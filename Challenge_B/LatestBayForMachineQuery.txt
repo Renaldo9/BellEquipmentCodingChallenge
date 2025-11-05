@@ -1,0 +1,4 @@
+SELECT mm.MachinePIN, mm.BayID, mm.DateTimeEntered FROM MachineMovements mm 
+INNER JOIN ( 
+SELECT MachinePIN, MAX(DateTimeEntered) AS LatestTime FROM MachineMovements GROUP BY MachinePIN )
+latest ON mm.MachinePIN = latest.MachinePIN AND mm.DateTimeEntered = latest.LatestTime;

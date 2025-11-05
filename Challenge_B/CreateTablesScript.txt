@@ -1,0 +1,32 @@
+CREATE TABLE Supervisors (
+    SupervisorID VARCHAR(50) PRIMARY KEY,
+    SupervisorName VARCHAR(100)
+);
+
+CREATE TABLE Employees (
+    EmployeeID VARCHAR(100) PRIMARY KEY,
+    EmployeeName VARCHAR(100)
+);
+
+CREATE TABLE Machines (
+    MachinePIN INT PRIMARY KEY,
+    ModelName VARCHAR(50)
+);
+
+CREATE TABLE Bays (
+    BayID VARCHAR(50) PRIMARY KEY,
+    BayName VARCHAR(50),
+    SupervisorID VARCHAR(50),
+    FOREIGN KEY (SupervisorID) REFERENCES Supervisors(SupervisorID)
+);
+
+CREATE TABLE MachineMovements (
+    MovementID INT PRIMARY KEY,
+    MachinePIN INT NOT NULL,
+    BayID VARCHAR(50) NOT NULL,
+    DateTimeEntered DATETIME NOT NULL,
+    ScannerID VARCHAR(100) NOT NULL,
+    FOREIGN KEY (MachinePIN) REFERENCES Machines(MachinePIN),
+    FOREIGN KEY (BayID) REFERENCES Bays(BayID),
+    FOREIGN KEY (ScannerID) REFERENCES Employees(EmployeeID)
+);
